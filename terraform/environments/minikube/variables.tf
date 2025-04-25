@@ -42,3 +42,17 @@ variable "tika_config" {
     custom_config = string
   })
 }
+
+variable "rabbitmq_config" {
+  description = "RabbitMQ module configuration"
+  type = object({
+    image_version = string
+    container_name = string
+    vhost = string
+  })
+  default = {
+    image_version = "4"
+    container_name = "rabbitmq"
+    vhost = "my_vhost"
+  }
+}

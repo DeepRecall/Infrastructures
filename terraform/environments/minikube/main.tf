@@ -22,3 +22,11 @@ module "tika" {
   resources      = var.tika_config.resources
   tika_config    = var.tika_config.custom_config
 }
+
+module "rabbitmq" {
+  source = "../../modules/rabbitmq"
+
+  image_version  = var.rabbitmq_config.image_version
+  container_name = var.rabbitmq_config.container_name
+  vhost          = var.rabbitmq_config.vhost
+}
