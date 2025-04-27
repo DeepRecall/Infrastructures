@@ -4,15 +4,15 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.23"
+      version = "~> 2.36"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "~> 2.5"
+      version = "~> 2.17"
     }
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0"
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = "~> 1.19"
     }
   }
 }
@@ -27,6 +27,11 @@ provider "helm" {
     config_path    = pathexpand(var.kube_config_path)
     config_context = "minikube"
   }
+}
+
+provider "kubectl" {
+  config_path    = pathexpand(var.kube_config_path)
+  config_context = "minikube"
 }
 
 data "local_file" "kubeconfig" {
