@@ -28,6 +28,7 @@ apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
   name: production-cluster
+  namespace: deeprecall
 spec:
   replicas: 3
   resources:
