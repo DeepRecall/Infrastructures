@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "~> 2.36"
+    }
+  }
+}
+
 resource "kubernetes_persistent_volume_claim" "wireguard" {
   metadata {
     name      = "pv-claim-wireguard"

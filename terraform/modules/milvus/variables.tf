@@ -44,6 +44,12 @@ variable "resources" {
   }
 }
 
+variable "service_type" {
+  description = "Kubernetes service type (ClusterIP, NodePort, LoadBalancer)"
+  type        = string
+  default     = "ClusterIP"
+}
+
 variable "metrics_enabled" {
   description = "Enable Prometheus metrics"
   type        = bool

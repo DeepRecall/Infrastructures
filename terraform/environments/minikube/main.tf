@@ -5,6 +5,7 @@ module "milvus" {
   namespace       = "deeprecall"
   chart_version   = var.milvus_config.chart_version
   cluster_enabled = var.milvus_config.cluster_enabled
+  service_type    = var.milvus_config.service_type
   persistence     = var.milvus_config.persistence
   resources       = var.milvus_config.resources
   metrics_enabled = var.milvus_config.metrics_enabled

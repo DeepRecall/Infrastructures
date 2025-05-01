@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.17"
+    }
+  }
+}
+
 resource "helm_release" "tika" {
   name       = var.release_name
   repository = "https://apache.jfrog.io/artifactory/tika"

@@ -14,6 +14,7 @@ variable "milvus_config" {
     release_name    = string
     chart_version   = string
     cluster_enabled = bool
+    service_type = string
     persistence = object({
       enabled       = bool
       storage_size  = string

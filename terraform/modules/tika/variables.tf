@@ -25,7 +25,7 @@ variable "image_tag" {
 variable "service_type" {
   description = "Kubernetes service type"
   type        = string
-  default     = "ClusterIP"
+  default     = "NodePort"
 }
 
 variable "service_port" {
