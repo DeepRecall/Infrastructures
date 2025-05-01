@@ -28,9 +28,11 @@ resource "kubectl_manifest" "rabbitmq_cluster" {
 apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
-  name: production-cluster
+  name: deeprecall-rabbitmq
   namespace: deeprecall
 spec:
+  service:
+    type: NodePort
   replicas: 3
   resources:
     requests:
