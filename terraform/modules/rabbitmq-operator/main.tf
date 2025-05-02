@@ -28,7 +28,7 @@ resource "kubectl_manifest" "rabbitmq_cluster" {
 apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
-  name: deeprecall-rabbitmq
+  name: rabbitmq
   namespace: deeprecall
 spec:
   service:

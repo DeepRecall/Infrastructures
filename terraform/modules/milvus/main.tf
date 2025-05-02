@@ -11,18 +11,12 @@ terraform {
   }
 }
 
-resource "kubernetes_namespace" "milvus" {
-  metadata {
-    name = var.namespace
-  }
-}
-
 resource "helm_release" "milvus" {
   name       = var.release_name
   repository = "https://zilliztech.github.io/milvus-helm"
   chart      = "milvus"
   version    = var.chart_version
-  namespace  = kubernetes_namespace.milvus.metadata[0].name
+  namespace  = var.namespace
 
   set {
     name  = "service.type"

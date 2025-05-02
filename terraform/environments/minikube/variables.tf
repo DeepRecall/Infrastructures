@@ -57,3 +57,49 @@ variable "rabbitmq_config" {
     vhost = "my_vhost"
   }
 }
+
+variable "postgresql_config" {
+  description = "Postgresql configuration"
+  type = object({
+    chart_version   = string
+    postgresql = object({
+      global = object({
+        postgresql = object({
+          auth = object({
+            database = string
+            username = string
+            password = string
+          })
+        })
+      })
+      service = object({
+        type = string
+      })
+      architecture = string
+      readReplicas = object({
+        replicaCount = string
+      })
+    })
+  })
+  default = {
+    chart_version   = "16.6.6"
+    postgresql = {
+      global = {
+        postgresql = {
+          auth = {
+            database = "casdoor"
+            username = "admin"
+            password = "placeholder"
+          }
+        }
+      }
+      service = {
+        type = "ClusterIP"
+      }
+      architecture = "replication"
+      readReplicas = {
+        replicaCount = "1"
+      }
+    }
+  }
+}

@@ -1,3 +1,10 @@
+# Ensure namespace exists
+resource "kubernetes_namespace" "deeprecall" {
+  metadata {
+    name = "deeprecall"
+  }
+}
+
 module "milvus" {
   source = "../../modules/milvus"
 
@@ -41,17 +48,22 @@ module "tika" {
 #   vhost          = var.rabbitmq_config.vhost
 # }
 
-module "wireguard" {
-  source = "../../modules/wireguard"
-  providers = {
-    kubernetes = kubernetes
-  }
-}
-
 module "rabbitmq_operator" {
   source = "../../modules/rabbitmq-operator"
 
   providers = {
     kubectl = kubectl
+  }
+}
+
+module "postgresql" {
+  source = "../../modules/postgresql"
+
+  namespace = "deeprecall"
+  chart_version = var.postgresql_config.chart_version
+  postgresql = var.postgresql_config.postgresql
+
+  providers = {
+    helm = helm
   }
 }
