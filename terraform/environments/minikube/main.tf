@@ -18,7 +18,6 @@ module "milvus" {
   metrics_enabled = var.milvus_config.metrics_enabled
 
   providers = {
-    kubernetes = kubernetes
     helm       = helm
   }
 }
@@ -62,6 +61,20 @@ module "postgresql" {
   namespace = "deeprecall"
   chart_version = var.postgresql_config.chart_version
   postgresql = var.postgresql_config.postgresql
+
+  providers = {
+    helm = helm
+  }
+}
+
+module "casdoor" {
+  source = "../../modules/casdoor"
+
+  release_name = var.casdoor_config.release_name
+  namespace    = "deeprecall"
+  chart_version = var.casdoor_config.chart_version
+  service_type  = var.casdoor_config.service_type
+  database    = var.casdoor_config.database
 
   providers = {
     helm = helm

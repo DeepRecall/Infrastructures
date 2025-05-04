@@ -103,3 +103,21 @@ variable "postgresql_config" {
     }
   }
 }
+
+variable "casdoor_config" {
+  description = "Casdoor module configuration"
+  type = object({
+    release_name    = string
+    chart_version = string
+    service_type  = string
+    database = object({
+      driver      = string
+      user        = string
+      password    = string
+      host        = string
+      port        = string
+      databaseName = string
+      sslMode     = string
+    })
+  })
+}
